@@ -7,6 +7,7 @@ public class FPSInputManager : MonoBehaviour
 {
     [SerializeField] FPSMovement movement;
     [SerializeField] FPSLook look;
+    [SerializeField] FPSItemPickUpDrop itemPickUpDrop;
     
     FPSPlayerControls controls;
     FPSPlayerControls.GroundMovementActions groundMovement;
@@ -40,6 +41,9 @@ public class FPSInputManager : MonoBehaviour
         // Sprint input handling with a single callback
         groundMovement.Sprint.started += ctx => movement.OnSprintPressed(true); // Start sprinting
         groundMovement.Sprint.canceled += ctx => movement.OnSprintPressed(false); // Stop sprinting
+
+        // Interact input handling with a single callback
+        groundMovement.Interact.performed += ctx => itemPickUpDrop.OnInteractPressed();
     }
 
 
