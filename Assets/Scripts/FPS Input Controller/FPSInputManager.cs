@@ -32,7 +32,16 @@ public class FPSInputManager : MonoBehaviour
            and doing it here allows us to control the sensitivity of each axis independently          */
         groundMovement.LookX.performed += ctx => lookInput.x = ctx.ReadValue<float>();
         groundMovement.LookY.performed += ctx => lookInput.y = ctx.ReadValue<float>();
+
+        // Crouch input handling with a single callback
+        groundMovement.Crouch.started += ctx => movement.OnCrouchPressed(true); // Start crouching
+        groundMovement.Crouch.canceled += ctx => movement.OnCrouchPressed(false); // Stop crouching
+
+        // Sprint input handling with a single callback
+        groundMovement.Sprint.started += ctx => movement.OnSprintPressed(true); // Start sprinting
+        groundMovement.Sprint.canceled += ctx => movement.OnSprintPressed(false); // Stop sprinting
     }
+
 
     private void Update()
     {

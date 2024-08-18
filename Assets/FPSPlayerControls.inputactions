@@ -43,21 +43,21 @@
                 },
                 {
                     "name": "Sprint",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "8d56ec59-e529-4d78-bc11-ed734225bbb3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Hold(duration=1E+25)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Crouch",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "c09059d3-6c60-4602-9708-211b6971e916",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Hold(duration=1E+20)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Interact",

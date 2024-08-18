@@ -20,7 +20,7 @@ public class FPSLook : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         HandleYRotation();
         HandleXRotation();
@@ -28,11 +28,13 @@ public class FPSLook : MonoBehaviour
 
     private void HandleXRotation()
     {
-        // Rotate the camera around the X axis
+        // Pitch the camera around the X axis
         xRotation -= lookY;
+        //xRotation -= lookY * Time.deltaTime;
         xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
         Vector3 targetRotation = transform.eulerAngles;
         targetRotation.x = xRotation;
+        //playerCamera.eulerAngles = new Vector3(xRotation, playerCamera.transform.eulerAngles.y, playerCamera.transform.eulerAngles.z);
         playerCamera.eulerAngles = targetRotation;
     }
 
