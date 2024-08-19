@@ -166,6 +166,14 @@ public class FPSMovement : MonoBehaviour
             isSprinting = false;
         }
     }
+    public void UpdatePlayerPosition(Vector3 newPosition)
+    {
+        controller.enabled = false;
+
+        controller.transform.position = newPosition;
+
+        controller.enabled = true;
+    }
 
     private void OnDrawGizmos()
     {
