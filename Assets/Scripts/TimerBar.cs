@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class TimerBar : MonoBehaviour
 {
-    public Slider timerSlider; // Assign this in the Inspector
-    public float timeBetweenScales = 30f; // Time in seconds between each scaling
-    public LevelScaler levelScaler; // Reference to the LevelScaler script
+    [SerializeField] private Slider timerSlider; // Assign this in the Inspector
+    [SerializeField] private float timeBetweenScales = 30f; // Time in seconds between each scaling
+    [SerializeField] private LevelScaler levelScaler; // Reference to the LevelScaler script
 
     private float timer = 0f;
 
@@ -13,8 +13,7 @@ public class TimerBar : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        //timerSlider.value = timer / timeBetweenScales;
-        //timerSlider.value = timer / timeBetweenScales;
+        timerSlider.value = timer / timeBetweenScales;
 
         if (timer >= timeBetweenScales)
         {
