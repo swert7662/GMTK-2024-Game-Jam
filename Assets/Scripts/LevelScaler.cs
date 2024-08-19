@@ -3,8 +3,8 @@ using UnityEngine;
 public class LevelScaler : MonoBehaviour
 {
     [SerializeField] private float scaleAmount = 2f;
-    [SerializeField] GameObject player;
-    [SerializeField] Transform centerPointTransform;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Transform centerPointTransform;
 
     private FPSMovement playerMovement;
     private Transform playerTransform;
