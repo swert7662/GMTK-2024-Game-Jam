@@ -14,6 +14,7 @@ public class TimerBar : MonoBehaviour
         timer += Time.deltaTime;
 
         //timerSlider.value = timer / timeBetweenScales;
+        //timerSlider.value = timer / timeBetweenScales;
 
         if (timer >= timeBetweenScales)
         {
