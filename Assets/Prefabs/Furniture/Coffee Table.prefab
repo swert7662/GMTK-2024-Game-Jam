@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -45}
 --- !u!33 &998880035418816157
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -59,11 +59,13 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 243882013029295292, guid: 8692c2dd16440f94b91123f57c189b4c, type: 3}
-  - {fileID: 6272020332430762805, guid: 8692c2dd16440f94b91123f57c189b4c, type: 3}
+  - {fileID: 2100000, guid: 39082b12a07f6e546b6d0366a09a3fe5, type: 2}
+  - {fileID: -5581366581161080341, guid: 5196f9bf4c749c94abb6e0cb757645d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
