@@ -6,26 +6,29 @@ public class OpenableObject : MonoBehaviour
 {
     [SerializeField] private float maxOpenAngle = 90f; // Maximum angle the door will swing open
     [SerializeField] private float openLerpSpeed = 2f; // Speed at which the door swings open
+    [SerializeField] private float closeLerpSpeed = 3f; // Speed at which the door swings open
 
     private bool isOpening = false;
     private Quaternion initialRotation;
     private Quaternion targetRotation;
     private Quaternion convertedAngle;
+    private float currentLerpSpeed;
 
     private void Start()
     {
         // Store the initial rotation of the door/object
         initialRotation = transform.rotation;
         convertedAngle = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y + maxOpenAngle, transform.eulerAngles.z);
-        targetRotation = convertedAngle;
+        targetRotation = initialRotation;
+        currentLerpSpeed = openLerpSpeed;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // If we are not open or closed, lerp the door to the target rotation
-        if (targetRotation != initialRotation && targetRotation != convertedAngle)
+        if (transform.rotation != targetRotation)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * openLerpSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * currentLerpSpeed);
         }
     }
 
@@ -36,10 +39,12 @@ public class OpenableObject : MonoBehaviour
         if (!isOpening)
         {
             targetRotation = initialRotation;
+            currentLerpSpeed = closeLerpSpeed;
         }
         else
         {
             targetRotation = convertedAngle;
+            currentLerpSpeed = openLerpSpeed;
         }
     }
 }
