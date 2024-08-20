@@ -21,4 +21,16 @@ public class TimerBar : MonoBehaviour
             timer = 0f; // Reset the timer after scaling
         }
     }
+
+    public void ReduceTimer(float amount)
+    {
+        if (timer - amount >= 0)
+        {
+            timer -= amount;
+        }
+        else
+        {
+            timer = 0;
+        }
+    }
 }
