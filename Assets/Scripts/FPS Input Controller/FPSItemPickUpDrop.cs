@@ -7,7 +7,7 @@ public class FPSItemPickUpDrop : MonoBehaviour
 {
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform objectGrabPointTransform;
-    [SerializeField] private LayerMask pickUpLayerMask;
+    [SerializeField] private LayerMask interactableLayers;
     [SerializeField] private float pickUpRange = 5f;
     [SerializeField] private Image reticleImage;
     [SerializeField] private Color highlightReticleColor = Color.red;
@@ -31,11 +31,15 @@ public class FPSItemPickUpDrop : MonoBehaviour
     {
         if (currentGrabbableObject == null)
         {
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, pickUpRange, pickUpLayerMask))
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, pickUpRange, interactableLayers))
             {
                 if (hit.transform.TryGetComponent(out currentGrabbableObject))
                 {
                     currentGrabbableObject.Grab(objectGrabPointTransform);
+                }
+                else if (hit.transform.TryGetComponent(out OpenableObject openableObject))
+                {
+                    openableObject.Open();
                 }
             }
         }
@@ -51,11 +55,11 @@ public class FPSItemPickUpDrop : MonoBehaviour
     {
         if (currentGrabbableObject) { return;}
 
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, pickUpRange, pickUpLayerMask))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, pickUpRange, interactableLayers))
         {
-            if (hit.transform.TryGetComponent(out GrabbableObject grabbableObject))
+            if (hit.transform.TryGetComponent(out GrabbableObject grabbableObject) || hit.transform.TryGetComponent(out OpenableObject openableObject))
             {
-                reticleImage.color = highlightReticleColor; // Change reticle color when hovering over a grabbable object
+                reticleImage.color = highlightReticleColor; // Change reticle color when hovering over a grabbable or openable object
                 reticleImage.rectTransform.sizeDelta = Vector2.Lerp(reticleImage.rectTransform.sizeDelta, highlightReticleSize, Time.deltaTime * sizeLerpSpeed);
 
             }
