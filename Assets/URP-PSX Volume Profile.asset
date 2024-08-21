@@ -87,43 +87,43 @@ MonoBehaviour:
   active: 1
   scanlinesWeight:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.1
   noiseWeight:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0
   screenBendX:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 6
   screenBendY:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 6
   vignetteAmount:
     m_OverrideState: 1
-    m_Value: 2.78
+    m_Value: 1.5
   vignetteSize:
     m_OverrideState: 1
     m_Value: 0.53
   vignetteRounding:
     m_OverrideState: 1
-    m_Value: 2.97
+    m_Value: 3
   vignetteSmoothing:
     m_OverrideState: 1
-    m_Value: 1.03
+    m_Value: 0.5
   scanlinesDensity:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 100
   scanlinesSpeed:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 100
   noiseAmount:
     m_OverrideState: 1
     m_Value: 250
   chromaticRed:
     m_OverrideState: 1
-    m_Value: {x: 0.002, y: -0.002}
+    m_Value: {x: 0, y: 0}
   chromaticGreen:
     m_OverrideState: 1
-    m_Value: {x: -0.002, y: 0.002}
+    m_Value: {x: 0, y: 0}
   chromaticBlue:
     m_OverrideState: 1
     m_Value: {x: 0, y: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
     m_Value: 90
   grilleBrightness:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 27.5
   grilleUvMidPoint:
     m_OverrideState: 1
     m_Value: 0.5
@@ -337,7 +337,7 @@ MonoBehaviour:
     m_Value: 256
   colorPrecision:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 20
 --- !u!114 &-2050026164957017036
 MonoBehaviour:
   m_ObjectHideFlags: 3
