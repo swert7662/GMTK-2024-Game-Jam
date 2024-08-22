@@ -17,7 +17,7 @@ public class TimerBar : MonoBehaviour
 
         if (timer >= timeBetweenScales)
         {
-            levelScaler.ScaleLevel();
+            levelScaler.ScalePlayer();
             timer = 0f; // Reset the timer after scaling
         }
     }

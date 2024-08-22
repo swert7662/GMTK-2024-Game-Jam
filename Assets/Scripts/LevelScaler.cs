@@ -19,7 +19,22 @@ public class LevelScaler : MonoBehaviour
         }
     }
 
-    public void ScaleLevel()
+    public void ScalePlayer()
+    {
+        // Adjust the player's movement parameters to account for the new scale
+        playerMovement.UpdateMovementParameters(scaleAmount);
+
+        // Adjust the camera's field of view (FOV) to enhance the shrinking effect
+        Camera playerCamera = playerTransform.GetComponentInChildren<Camera>();
+        if (playerCamera != null)
+        {
+            //playerCamera.fieldOfView *= scaleAmount; // Adjust this value to tweak the effect
+            playerCamera.fieldOfView -= 15;
+        }
+    }
+
+
+    /*public void ScaleLevel()
     {
         // Calculate the player's position relative to the center of the level
         Vector3 relativePosition = playerTransform.transform.position - centerPointTransform.position;
@@ -30,5 +45,5 @@ public class LevelScaler : MonoBehaviour
         Vector3 newPosition = centerPointTransform.position + relativePosition * scaleAmount;
 
         playerMovement.UpdatePlayerPosition(newPosition);
-    }
+    }*/
 }

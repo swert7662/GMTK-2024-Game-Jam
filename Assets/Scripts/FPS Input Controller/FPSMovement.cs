@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,10 +28,12 @@ public class FPSMovement : MonoBehaviour
     [SerializeField] float normalHeight;
     [SerializeField] Transform crouchCameraPosition;
     [SerializeField] Transform standCameraPosition;
+    [SerializeField] Transform groundCheckPosition;
     [SerializeField] float crouchTransitionSpeed;
     bool isGrounded;
     bool isCrouching = false;
     bool isSprinting = false;
+    private float currentScale = 1f; // Represetns the current scale of the player, 2 is actually half size, 4 is quarter size, etc.
 
     private void Start()
     {
@@ -47,8 +50,15 @@ public class FPSMovement : MonoBehaviour
 
     private void GroundedCheck()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
+        /*isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
         if (isGrounded) {
+            verticalVelocity.y = 0;
+        }*/
+
+        RaycastHit hit;
+        isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, out hit, 0.1f, groundMask);
+        if (isGrounded)
+        {
             verticalVelocity.y = 0;
         }
     }
@@ -68,7 +78,7 @@ public class FPSMovement : MonoBehaviour
         // If jump is true and the player is grounded, then jump
         if (jump) {
             if (isGrounded) {
-                verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity); // Jump eq -> v = sqrt(jumpHeight * -2 * gravity)
+                verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity * currentScale); // Jump eq -> v = sqrt(jumpHeight * -2 * gravity)
             }
             jump = false;
         }
@@ -130,7 +140,7 @@ public class FPSMovement : MonoBehaviour
     // These methods are called from FPSInputManager.cs & handle input from the player
     public void RecieveInput(Vector2 _horizontalInput)
     {
-        horizontalInput = _horizontalInput;
+        horizontalInput = _horizontalInput * currentScale;
     }
 
     public void OnJumpPressed()
@@ -175,6 +185,26 @@ public class FPSMovement : MonoBehaviour
         controller.enabled = true;
     }
 
+    internal void UpdateMovementParameters(float scaleAmount)
+    {
+        currentScale /= scaleAmount;
+
+        // Adjust character controller height and radius based on the new scale
+        controller.height /= scaleAmount;
+        controller.radius /= scaleAmount;
+
+        // Optionally adjust crouch and stand heights to match the new scale
+        crouchHeight /= scaleAmount;
+        normalHeight /= scaleAmount;
+
+        crouchCameraPosition.localPosition /= scaleAmount;
+        standCameraPosition.localPosition /= scaleAmount;
+        groundCheckPosition.localPosition /= scaleAmount;
+
+        // Adjust camera transition speed if needed
+        //crouchTransitionSpeed *= scaleAmount;
+    }
+
     private void OnDrawGizmos()
     {
         if (controller != null)
@@ -201,5 +231,5 @@ public class FPSMovement : MonoBehaviour
                 transform.position + controller.center - Vector3.up * (controller.height / 2 - controller.radius) - Vector3.right * controller.radius
             );
         }
-    }
+    }    
 }
