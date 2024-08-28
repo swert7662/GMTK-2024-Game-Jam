@@ -4,16 +4,19 @@ public class BobAndRotateWithEuler : MonoBehaviour
 {
     [SerializeField] private float bobSpeed = 2f; // Speed of the bobbing motion
     [SerializeField] private float bobHeight = 0.05f; // Height of the bobbing motion
-    [SerializeField] private Vector3 rotationSpeed = new Vector3(0f, 0f, 50f); // Rotation speed around each axis (x, y, z)
+    [SerializeField] private float speed = 50f; // Overall rotation speed
+
+    // Checkboxes to enable/disable rotation around each axis
+    [SerializeField] private bool rotateAroundX = false;
+    [SerializeField] private bool rotateAroundY = false;
+    [SerializeField] private bool rotateAroundZ = false;
 
     private Vector3 initialPosition;
-    private Vector3 initialRotation;
 
     private void Start()
     {
-        // Store the initial position and rotation of the object
+        // Store the initial position of the object
         initialPosition = transform.position;
-        initialRotation = transform.eulerAngles; // Using Euler angles to store the initial rotation
     }
 
     private void Update()
@@ -22,7 +25,11 @@ public class BobAndRotateWithEuler : MonoBehaviour
         float newY = initialPosition.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 
-        // Rotating motion using Euler angles
-        transform.Rotate(rotationSpeed * Time.deltaTime);
+        // Rotating motion
+        float xRotation = rotateAroundX ? speed * Time.deltaTime : 0f;
+        float yRotation = rotateAroundY ? speed * Time.deltaTime : 0f;
+        float zRotation = rotateAroundZ ? speed * Time.deltaTime : 0f;
+
+        transform.Rotate(new Vector3(xRotation, yRotation, zRotation));
     }
 }

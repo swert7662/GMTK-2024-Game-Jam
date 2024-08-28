@@ -13,8 +13,8 @@ public class FPSItemPickUpDrop : MonoBehaviour
     [SerializeField] private Color highlightReticleColor = Color.red;
 
     private GrabbableObject currentGrabbableObject;
-    private Vector2 defaultReticleSize = new Vector2(10f, 10f); 
-    private Vector2 highlightReticleSize = new Vector2(15f, 15f); 
+    private Vector2 defaultReticleSize = new Vector2(5f, 5f); 
+    private Vector2 highlightReticleSize = new Vector2(20f, 20f); 
     private Color defaultReticleColor;
     private float sizeLerpSpeed = 10f;
 

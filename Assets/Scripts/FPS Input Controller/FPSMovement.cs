@@ -50,28 +50,44 @@ public class FPSMovement : MonoBehaviour
 
     private void GroundedCheck()
     {
-        /*isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
-        if (isGrounded) {
-            verticalVelocity.y = 0;
-        }*/
-
-        RaycastHit hit;
-        isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, out hit, 0.1f, groundMask);
-        if (isGrounded)
+        // Array of raycast origins (central and slightly offset positions)
+        Vector3[] origins = new Vector3[]
         {
-            verticalVelocity.y = 0;
+        groundCheck.position, // central
+        groundCheck.position + new Vector3(0.2f, 0, 0), // right
+        groundCheck.position + new Vector3(-0.2f, 0, 0), // left
+        groundCheck.position + new Vector3(0, 0, 0.2f), // forward
+        groundCheck.position + new Vector3(0, 0, -0.2f) // backward
+        };
+
+        isGrounded = false; // reset isGrounded
+
+        foreach (Vector3 origin in origins)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(origin, Vector3.down, out hit, 0.2f, groundMask) && verticalVelocity.y <= 0)
+            {
+                isGrounded = true;
+                verticalVelocity.y = 0;
+                break; // If grounded, no need to check further
+            }
         }
+
+        
     }
+
 
     private bool CanStandUp()
     {
+        float rayLength = normalHeight - crouchHeight;
         RaycastHit hit;
-        if (Physics.SphereCast(crouchCameraPosition.position, controller.radius, Vector3.up, out hit, normalHeight - crouchHeight))
+        if (Physics.Raycast(crouchCameraPosition.position, Vector3.up, out hit, rayLength, groundMask))
         {
-            return false; // Something is in the way, can't stand up
+            return false; 
         }
-        return true; // Safe to stand up
+        return true;
     }
+
 
     private void HandleJump()
     {
@@ -131,9 +147,13 @@ public class FPSMovement : MonoBehaviour
     }
 
     private void HandleVerticalMovement()
-    {
-        // Vertical Movement section      
-        verticalVelocity.y += gravity * Time.deltaTime;
+    {   
+        if (!isGrounded)
+        {
+            verticalVelocity.y += gravity * Time.deltaTime;
+        }
+
+        //verticalVelocity.y += gravity * Time.deltaTime;
         controller.Move(verticalVelocity * Time.deltaTime);
     }
 
