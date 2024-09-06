@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436081204992811149}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crouch Camera Position
-  m_TagString: Untagged
+  m_TagString: CrouchPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 747034781339706115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,10 +43,9 @@ GameObject:
   - component: {fileID: 3091869522785785323}
   - component: {fileID: 8027737621354566470}
   - component: {fileID: 1788241826817092875}
-  - component: {fileID: 2787229316786992955}
   - component: {fileID: 5081814358970159890}
   - component: {fileID: 7799899855486069951}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -142,25 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 5081814358970159890}
-  look: {fileID: 2787229316786992955}
-  itemPickUpDrop: {fileID: 7799899855486069951}
---- !u!114 &2787229316786992955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3191219913332699604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed85145e33cfd1b4e8d2c238ffc89d1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivityX: 30
-  sensitivityY: 0.45
-  gamepadMultiplier: 0.5
-  playerCamera: {fileID: 8289053140460699993}
-  xClamp: 85
+  look: {fileID: 8631356222765762616}
+  interact: {fileID: 7799899855486069951}
+  pause: {fileID: 0}
 --- !u!114 &5081814358970159890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,23 +156,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c1b77a9686f6348a05b8cf2a0cd5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 3091869522785785323}
   walkSpeed: 7
   crouchMoveSpeed: 4
   sprintSpeed: 11
   jumpHeight: 1.5
-  gravity: -30
-  groundCheck: {fileID: 311052838651111541}
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
-  cameraTransform: {fileID: 8289053140460699993}
-  crouchHeight: 0.5
+    m_Bits: 65
+  crouchHeight: 1.25
   normalHeight: 2
-  crouchCameraPosition: {fileID: 1436081204992811149}
-  standCameraPosition: {fileID: 3839098846284878985}
-  groundCheckPosition: {fileID: 311052838651111541}
-  crouchTransitionSpeed: 10
 --- !u!114 &7799899855486069951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +181,7 @@ MonoBehaviour:
   objectGrabPointTransform: {fileID: 1338235883707511627}
   interactableLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 449
   pickUpRange: 3
   reticleImage: {fileID: 0}
   highlightReticleColor: {r: 0.88504124, g: 1, b: 0.8254717, a: 1}
@@ -219,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1338235883707511627}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GrabbablePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +227,7 @@ GameObject:
   - component: {fileID: 6925310942053541603}
   - component: {fileID: 2996538325878909140}
   - component: {fileID: 1752285867640716897}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +244,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 612029452253824881}
@@ -304,7 +279,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7b6959f6c4d0f6d4d8ec4f995c08e4f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -335,9 +310,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3839098846284878985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stand Camera Position
-  m_TagString: Untagged
+  m_TagString: StandPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,9 +341,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311052838651111541}
-  m_Layer: 0
+  - component: {fileID: 1839634132803874227}
+  - component: {fileID: 539014166240956896}
+  m_Layer: 9
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: GroundCheck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -388,6 +365,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 612029452253824881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1839634132803874227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675915388724923500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9ba6a86caf2494fbb3080d50871ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepClips:
+  - {fileID: 8300000, guid: 46100fda67d57774b93da415dd7c9e4f, type: 3}
+  - {fileID: 8300000, guid: 64508016c866a4e4a8ab0f5b020e5836, type: 3}
+  - {fileID: 8300000, guid: ebefe735b9b904d4dab6e70b96f6f263, type: 3}
+  - {fileID: 8300000, guid: 72b4382cae039794bb0dd0df6fb3e292, type: 3}
+  - {fileID: 8300000, guid: af08ef3832215854f9bdaf450911ee8d, type: 3}
+  - {fileID: 8300000, guid: f8d171ce8bbdbab4bb4728814885a4a5, type: 3}
+  minPitch: 0.95
+  maxPitch: 1.05
+  distanceBetweenSteps: 3
+  fallDistanceThreshold: 2
+--- !u!114 &539014166240956896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675915388724923500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ec8bb71fbfaf64cbf8832991f3abe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1 &8596889170627011994
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,9 +416,10 @@ GameObject:
   - component: {fileID: 5748281969262811798}
   - component: {fileID: 2011206816793924279}
   - component: {fileID: 3249491782150479090}
-  m_Layer: 0
+  - component: {fileID: 8631356222765762616}
+  m_Layer: 9
   m_Name: First Person View Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -417,7 +433,7 @@ Transform:
   m_GameObject: {fileID: 8596889170627011994}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3125, z: 0}
+  m_LocalPosition: {x: 0, y: 0.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -457,7 +473,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 85
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -587,3 +603,16 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &8631356222765762616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8596889170627011994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed85145e33cfd1b4e8d2c238ffc89d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 50
